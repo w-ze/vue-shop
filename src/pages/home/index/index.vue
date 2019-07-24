@@ -6,7 +6,7 @@
                 <div class="search-icon"></div>
                 <div class="search-input">输入喜欢宝贝名称</div>
             </div>
-            <span>登录</span>
+            <span>登录</span> 
         </header>
         <div class="banner-wrap">
             <div class="swiper-container">
