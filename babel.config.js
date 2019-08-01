@@ -7,5 +7,11 @@ module.exports = {
         allowTopLevelThis: true,
       },
     ],
+    ["component", 
+        {
+          "libraryName": "mint-ui",
+          "style": true
+        }
+    ]
   ],
 }

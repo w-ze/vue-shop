@@ -1,12 +1,16 @@
 <template>
     <div class="page">
-        <header :class="{red:isScrollColor}">
-            <img src="../../../assets/images/common/class.png" alt @click="goPage('goods/classify')"/>
+        <header :class="{ red: isScrollColor }">
+            <img
+                src="../../../assets/images/common/class.png"
+                alt
+                @click="goPage('goods/classify')"
+            />
             <div class="search">
                 <div class="search-icon"></div>
                 <div class="search-input">输入喜欢宝贝名称</div>
             </div>
-            <span>登录</span> 
+            <span>登录</span>
         </header>
         <div class="banner-wrap">
             <div class="swiper-container">
@@ -40,10 +44,11 @@
                     —— {{ item.title }} ——
                 </div>
                 <div class="goods-list">
-                    <div class="goods-list1">
-                        <div class="goods-name">
-                            {{ item.items[0].title }}
-                        </div>
+                    <div
+                        class="goods-list1"
+                        @click="goPage('/goods/info?gid=' + item.items[0].gid)"
+                    >
+                        <div class="goods-name">{{ item.items[0].title }}</div>
                         <span class="goods-discount">精品折扣</span>
                         <span :class="'goods-price-' + (index + 1)"
                             >{{ item.items[0].price }}元</span
@@ -55,7 +60,12 @@
                         />
                     </div>
                     <div class="goods-list2">
-                        <div class="goods-list2-1">
+                        <div
+                            class="goods-list2-1"
+                            @click="
+                                goPage('/goods/info?gid=' + item.items[1].gid)
+                            "
+                        >
                             <div class="goods-list2-left">
                                 <div class="goods-name">
                                     {{ item.items[1].title }}
@@ -70,7 +80,12 @@
                                 />
                             </div>
                         </div>
-                        <div class="goods-list2-2">
+                        <div
+                            class="goods-list2-2"
+                            @click="
+                                goPage('/goods/info?gid=' + item.items[2].gid)
+                            "
+                        >
                             <div class="goods-list2-left">
                                 <div class="goods-name">
                                     {{ item.items[2].title }}
@@ -92,10 +107,9 @@
                         class="goods-list3-1"
                         v-for="(item2, index2) in item.items.slice(3)"
                         :key="index2"
+                        @click="goPage('/goods/info?gid=' + item2.gid)"
                     >
-                        <div class="goods-name">
-                            {{ item2.title }}
-                        </div>
+                        <div class="goods-name">{{ item2.title }}</div>
                         <img
                             src="../../../assets/images/common/grey.jpg"
                             :data-echo="item2.image"
@@ -113,26 +127,38 @@
                     —— {{ item.title }} ——
                 </div>
                 <div class="goods-list">
-                    <div class="goods-list2" v-for="(item2, index2) in item.items.slice(0, 2)" :key="index2">
-                        <div class="goods-name">
-                            {{ item2.title }}
-                        </div>
-                        
+                    <div
+                        class="goods-list2"
+                        v-for="(item2, index2) in item.items.slice(0, 2)"
+                        :key="index2"
+                        @click="goPage('/goods/info?gid=' + item2.gid)"
+                    >
+                        <div class="goods-name">{{ item2.title }}</div>
+
                         <div class="goods-desc">火爆开售</div>
-                        <img src="../../../assets/images/common/grey.jpg" :data-echo="item2.image"/>
+                        <img
+                            src="../../../assets/images/common/grey.jpg"
+                            :data-echo="item2.image"
+                        />
                     </div>
                 </div>
                 <div class="goods-list3">
-                    <div class="goods-list3-1" v-for="(item2,index2) in item.items.slice(2)" :key="index2">
-                        <div class="goods-name">
-                            {{item2.title}}
-                        </div>
+                    <div
+                        class="goods-list3-1"
+                        v-for="(item2, index2) in item.items.slice(2)"
+                        :key="index2"
+                        @click="goPage('/goods/info?gid=' + item2.gid)"
+                    >
+                        <div class="goods-name">{{ item2.title }}</div>
                         <img
-                            src="../../../assets/images/common/grey.jpg" :data-echo="item2.image"
+                            src="../../../assets/images/common/grey.jpg"
+                            :data-echo="item2.image"
                             alt
                         />
-                        <div class="goods-price1">￥{{item2.price}}</div>
-                        <div class="goods-price2">￥{{item2.price+30}}.00</div>
+                        <div class="goods-price1">￥{{ item2.price }}</div>
+                        <div class="goods-price2">
+                            ￥{{ item2.price + 30 }}.00
+                        </div>
                     </div>
                 </div>
             </div>
@@ -146,15 +172,17 @@
             <div class="line"></div>
         </div>
         <div class="recommend-area">
-            <div class="item-list" v-for="(item,index) in recommendData" :key="index">
+            <div
+                class="item-list"
+                v-for="(item, index) in recommendData"
+                :key="index"
+            >
                 <img
                     src="../../../assets/images/common/grey.jpg"
                     :data-echo="item.image"
                     alt
                 />
-                <div class="item-name">
-                    {{item.title}}
-                </div>
+                <div class="item-name">{{ item.title }}</div>
                 <div class="item-price">￥399.00</div>
             </div>
         </div>
@@ -171,20 +199,20 @@ export default {
             swiperData: [],
             navData: [],
             goodsData: [],
-            recommendData:[],
-            isScrollColor:false
+            recommendData: [],
+            isScrollColor: false
         };
     },
     components: {},
     methods: {
-        goPage(url){
-            this.$router.push(url)
+        goPage(url) {
+            this.$router.push(url);
         },
         getSwiper() {
             this.$request(
                 this.$config.baseApi +
-                    "home/index/slide?token=" +
-                    this.$config.token,
+                "home/index/slide?token=" +
+                this.$config.token,
                 "get"
             ).then(res => {
                 if (res.code === 200) {
@@ -209,8 +237,8 @@ export default {
         getNav() {
             this.$request(
                 this.$config.baseApi +
-                    "home/index/nav?token=" +
-                    this.$config.token,
+                "home/index/nav?token=" +
+                this.$config.token,
                 "get"
             ).then(res => {
                 if (res.code === 200) {
@@ -224,8 +252,8 @@ export default {
         getGoods() {
             this.$request(
                 this.$config.baseApi +
-                    "home/index/goodsLevel?token=" +
-                    this.$config.token,
+                "home/index/goodsLevel?token=" +
+                this.$config.token,
                 "get"
             ).then(res => {
                 if (res.code === 200) {
@@ -239,8 +267,8 @@ export default {
         getRecommend() {
             this.$request(
                 this.$config.baseApi +
-                    "home/index/recom?token=" +
-                    this.$config.token,
+                "home/index/recom?token=" +
+                this.$config.token,
                 "get"
             ).then(res => {
                 if (res.code === 200) {
@@ -251,12 +279,13 @@ export default {
                 }
             });
         },
-        eventScroll(){
-            let scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
-            console.log(scrollTop)
-            if(scrollTop>100){
+        eventScroll() {
+            let scrollTop =
+                document.body.scrollTop || document.documentElement.scrollTop;
+            console.log(scrollTop);
+            if (scrollTop > 100) {
                 this.isScrollColor = true;
-            }else{
+            } else {
                 this.isScrollColor = false;
             }
         }
@@ -275,7 +304,7 @@ export default {
     },
     mounted() {
         document.title = this.$route.meta.title;
-        window.addEventListener("scroll",this.eventScroll)
+        window.addEventListener("scroll", this.eventScroll);
     },
     //解决keep-alive缓存的问题，实时更新数据
     activated() {
@@ -290,8 +319,11 @@ p {
     margin: 0;
 }
 
-.red{
-    background: linear-gradient(rgb(235, 22, 37) 0%, rgba(255, 255, 255, 0) 100%);
+.red {
+    background: linear-gradient(
+        rgb(235, 22, 37) 0%,
+        rgba(255, 255, 255, 0) 100%
+    );
 }
 header {
     width: 100%;
@@ -408,9 +440,8 @@ header span {
     width: 50%;
     /* padding: 0.2rem; */
     overflow: hidden;
-    
 }
-.goods-list2{
+.goods-list2 {
     border-bottom: 1px solid #ccc;
     border-right: 1px solid #ccc;
 }
@@ -453,8 +484,8 @@ header span {
     width: 100%;
     display: flex;
 }
-.goods-list2-1{
-    border-bottom: 1px solid #ccc;  
+.goods-list2-1 {
+    border-bottom: 1px solid #ccc;
 }
 
 .goods-list2-left {
