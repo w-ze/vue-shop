@@ -211,7 +211,7 @@ export default {
         getSwiper() {
             this.$request(
                 this.$config.baseApi +
-                "home/index/slide?token=" +
+                "/home/index/slide?token=" +
                 this.$config.token,
                 "get"
             ).then(res => {
@@ -237,7 +237,7 @@ export default {
         getNav() {
             this.$request(
                 this.$config.baseApi +
-                "home/index/nav?token=" +
+                "/home/index/nav?token=" +
                 this.$config.token,
                 "get"
             ).then(res => {
@@ -252,7 +252,7 @@ export default {
         getGoods() {
             this.$request(
                 this.$config.baseApi +
-                "home/index/goodsLevel?token=" +
+                "/home/index/goodsLevel?token=" +
                 this.$config.token,
                 "get"
             ).then(res => {
@@ -267,7 +267,7 @@ export default {
         getRecommend() {
             this.$request(
                 this.$config.baseApi +
-                "home/index/recom?token=" +
+                "/home/index/recom?token=" +
                 this.$config.token,
                 "get"
             ).then(res => {

@@ -98,6 +98,30 @@ let router = new Router({
             path: "/register",
             name: "register",
             component: () => import('./pages/user/register/index.vue'),
+        },
+        {
+            path: "/profile",
+            name: "profile",
+            component: () => import('./pages/user/profile/index.vue'),
+            meta: { title: "个人资料", auth: true }
+        },
+        {
+            path: "/address",
+            name: "address",
+            component: () => import('./pages/user/address/index.vue'),
+            meta: { title: "地址管理", auth: true }
+        },
+        {
+            path: "/address/add",
+            name: "addressAdd",
+            component: () => import('./pages/user/address/add.vue'),
+            meta: { title: "地址添加", auth: true }
+        },
+        {
+            path: "/address/mod",
+            name: "addressMod",
+            component: () => import('./pages/user/address/mod.vue'),
+            meta: { title: "地址修改", auth: true }
         }
     ]
 });

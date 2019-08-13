@@ -9,10 +9,17 @@
         <main>
             <div class="myHeader">
                 <div class="head-wrap">
-                    <img :src="userData.head" alt="" />
+                    <img
+                        :src="
+                            userData.head
+                                ? userData.head
+                                : require('../../../assets/images/user/my/default-head.png')
+                        "
+                        alt=""
+                    />
                 </div>
                 <div class="nickname">
-                    {{ this.isLogin ? this.nickname : "昵称" }}
+                    {{ this.isLogin ? userData.nickname : "昵称" }}
                 </div>
                 <div class="vip">我的积分：0</div>
             </div>
@@ -50,11 +57,11 @@
                 </ul>
             </div>
             <div class="mylist">
-                <ul>
+                <ul @click="$router.push('/profile')">
                     <li>个人资料</li>
                     <li class="li-right"></li>
                 </ul>
-                <ul>
+                <ul @click="$router.push('/address')">
                     <li>地址管理</li>
                     <li class="li-right"></li>
                 </ul>
@@ -93,7 +100,7 @@ let oToast = Toast;
 export default {
     data() {
         return {
-            userData: {}
+            userData: []
         }
     },
     computed: {
@@ -121,15 +128,20 @@ export default {
                     })
                 }
             });
+        },
+        getUserInfo() {
+            this.$request(this.$config.baseApi + "/user/myinfo/userinfo/uid/" + this.$store.state.user.uid + "?token=" + this.$config
+                .token).then(res => {
+                    console.log(res);
+                    if (res.code === 200) {
+                        this.userData = res.data;
+                    }
+                });
         }
+
     },
     created() {
-        this.$request(this.$config.baseApi + "/user/myinfo/userinfo/uid/696443691?token=" + this.$config.token, "post", { uid: this.uid }).then(res => {
-            console.log(res)
-            if (res.code === 200) {
-                this.userData = res.data;
-            }
-        })
+        this.getUserInfo()
     },
     mounted() {
         document.title = this.$route.meta.title

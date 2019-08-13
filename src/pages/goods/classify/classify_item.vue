@@ -54,7 +54,7 @@ export default {
         getGoods() {
             this.$request(
                 this.$config.baseApi +
-                "home/category/show?cid=" +
+                "/home/category/show?cid=" +
                 this.cid +
                 "&token=" +
                 this.$config.token,

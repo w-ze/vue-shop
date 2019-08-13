@@ -14,7 +14,7 @@
         </header>
         <main>
             <aside class="parent" ref="scroll-classify" @touchmove.prevent>
-                <div class="show">
+                <div>
                     <div
                         :class="{
                             classify: true,
@@ -128,10 +128,9 @@ export default {
                 this.$nextTick(() => {
                     this.myScroll.refresh();
                 })
-
             }
         })
-        console.log(this.classifyData)
+
     },
     mounted() {
         this.$store.commit("classify/getClassify", { cid: this.cid })
@@ -183,11 +182,14 @@ main {
     padding-top: 1rem;
     /* overflow: auto; */
     box-sizing: border-box;
+    overflow: hidden;
 }
 aside {
     width: 23%;
     background: #fff;
     height: 100%;
+    overflow: hidden;
+    position: relative;
 }
 aside .classify {
     width: 100%;

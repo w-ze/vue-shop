@@ -1,5 +1,5 @@
 <template>
-    <div class="com">
+    <div class="com" @tochmove.prevent>
         <div class="comment-list" v-show="!isCommentsNull" @tochmove.prevent>
             <div class="comment-title">商品评价({{ pageInfo.total }})</div>
             <div ref="scroll-review" class="parent">

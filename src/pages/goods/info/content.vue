@@ -565,6 +565,9 @@ footer .cart-add {
     font-size: 0.1rem;
     line-height: 0.6rem;
     color: #323232;
+    display: flex;
+    justify-content: center;
+    align-content: center;
 }
 .add {
     text-align: center;

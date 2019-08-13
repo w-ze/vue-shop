@@ -81,8 +81,9 @@ export default {
             }
             this.$request(this.$config.baseApi + "/home/user/pwdlogin?token=" + this.$config.token, "post",
                 { cellphone: this.user, password: this.pass }).then(res => {
-                    console.log(res)
+                    console.log(typeof (res))
                     if (res.code === 200) {
+                        console.log(12)
                         this.$store.commit("user/login",
                             {
                                 uid: res.data.uid,
